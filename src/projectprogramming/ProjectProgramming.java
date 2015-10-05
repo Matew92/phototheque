@@ -61,7 +61,7 @@ public class ProjectProgramming extends JFrame{
 
         public setWindow() {
             
-            
+            //layout winodow
             JPanel mainPanel = new JPanel(new BorderLayout());
             JPanel upperPanel = new JPanel(new GridBagLayout());
             JPanel centerPanel = new JPanel(new GridBagLayout());
