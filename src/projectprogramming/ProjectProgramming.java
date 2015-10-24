@@ -8,20 +8,33 @@ package projectprogramming;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import static java.awt.SystemColor.window;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.*;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+import javax.swing.event.AncestorListener;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -76,7 +89,7 @@ public class ProjectProgramming extends JFrame{
          
             final JLabel status = new JLabel("status");
             
-            JMenuBar menubar = new BuiltMenu(status, this);
+            JMenuBar menubar = new BuiltMenu(status, centerPanel, this);
             
             //bottomBar
             
@@ -121,10 +134,13 @@ public class ProjectProgramming extends JFrame{
     JCheckBoxMenuItem cbMenuItem;
     JFileChooser filechooser;
 
-        public BuiltMenu(final JLabel label,final JFrame winodw) {
+        public BuiltMenu(final JLabel label,final JPanel center,final JFrame winodw) {
             
             
             filechooser = new JFileChooser();
+            filechooser.setFileSelectionMode(filechooser.FILES_ONLY);  
+            FileFilter filter = new FileNameExtensionFilter("Image files","jpeg","jpg");
+            filechooser.setFileFilter(filter);
             menu = new JMenu("File");
             menuItem = new JMenuItem("Import",KeyEvent.VK_T);
             menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
@@ -136,8 +152,18 @@ public class ProjectProgramming extends JFrame{
                     
                     int returnVal = filechooser.showOpenDialog(winodw);
                     if (returnVal == filechooser.APPROVE_OPTION) {
-                        java.io.File file = filechooser.getSelectedFile();
+                        File file = filechooser.getSelectedFile();
                         label.setText("File Selected :" + file.getName());
+                        
+                        JpanelCont imgcontainer = new JpanelCont();
+                        try {
+                            imgcontainer.setPhoto(file);
+                        } catch (IOException ex) {
+                            Logger.getLogger(ProjectProgramming.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                       
+                        center.add(imgcontainer);  
+                        center.repaint();  
                     }
                     else{
                         label.setText("Open command cancelled by user." );
@@ -190,5 +216,5 @@ public class ProjectProgramming extends JFrame{
         }
     }
     
-    
+  
 }
