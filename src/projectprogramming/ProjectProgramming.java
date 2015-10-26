@@ -77,7 +77,7 @@ public class ProjectProgramming extends JFrame{
             //layout winodow
             JPanel mainPanel = new JPanel(new BorderLayout());
             JPanel upperPanel = new JPanel(new GridBagLayout());
-            JPanel centerPanel = new JPanel(new GridBagLayout());
+            JPanel centerPanel = new JPanel(new GridLayout(1, 1, 1, 1));
             JPanel bottomPanel = new JPanel(new GridBagLayout());
             JToggleButton familyBtn = new JToggleButton("Family");
             JToggleButton vacaionBtn = new JToggleButton("Vacation");
@@ -109,6 +109,19 @@ public class ProjectProgramming extends JFrame{
             lim.gridy = 0;
             upperPanel.add(schoolBtn,lim);
             
+            //ceneterwindow
+            
+            File file = new File("/Users/mattiachenet/Downloads/ciao.jpg");
+            
+            JpanelCont imgcontainer;
+            try {
+                imgcontainer = new JpanelCont(file);
+                centerPanel.add(imgcontainer);  
+                //centerPanel.repaint();
+            } catch (IOException ex) {
+                Logger.getLogger(ProjectProgramming.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                            
       
             
             
@@ -155,15 +168,21 @@ public class ProjectProgramming extends JFrame{
                         File file = filechooser.getSelectedFile();
                         label.setText("File Selected :" + file.getName());
                         
-                        JpanelCont imgcontainer = new JpanelCont();
+                        JpanelCont imgcontainer;
                         try {
-                            imgcontainer.setPhoto(file);
+                            imgcontainer = new JpanelCont(file);
+                            center.add(imgcontainer);  
+                            //center.repaint();
+//                        try {
+//                            imgcontainer.setPhoto(file);
+//                        } catch (IOException ex) {
+//                            Logger.getLogger(ProjectProgramming.class.getName()).log(Level.SEVERE, null, ex);
+//                        }
                         } catch (IOException ex) {
                             Logger.getLogger(ProjectProgramming.class.getName()).log(Level.SEVERE, null, ex);
                         }
                        
-                        center.add(imgcontainer);  
-                        center.repaint();  
+                          
                     }
                     else{
                         label.setText("Open command cancelled by user." );
