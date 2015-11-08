@@ -111,16 +111,16 @@ public class ProjectProgramming extends JFrame{
             
             //ceneterwindow
             
-            File file = new File("/Users/mattiachenet/Downloads/ciao.jpg");
-            
-            JpanelCont imgcontainer;
-            try {
-                imgcontainer = new JpanelCont(file);
-                centerPanel.add(imgcontainer);  
-                //centerPanel.repaint();
-            } catch (IOException ex) {
-                Logger.getLogger(ProjectProgramming.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            File file = new File("/Users/mattiachenet/Downloads/ciao.jpg");
+//            
+//            JpanelCont imgcontainer;
+//            try {
+//                imgcontainer = new JpanelCont(file);
+//                centerPanel.add(imgcontainer);  
+//                //centerPanel.repaint();
+//            } catch (IOException ex) {
+//                Logger.getLogger(ProjectProgramming.class.getName()).log(Level.SEVERE, null, ex);
+//            }
                             
       
             
